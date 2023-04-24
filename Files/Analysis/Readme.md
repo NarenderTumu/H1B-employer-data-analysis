@@ -166,7 +166,7 @@ of NAICS codes**
 <th style="text-align:left;">
 Sector
 </th>
-<th style="text-align:center;">
+<th style="text-align:left;">
 Definition
 </th>
 </tr>
@@ -176,7 +176,7 @@ Definition
 <td style="text-align:left;">
 11
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Agriculture, Forestry, Fishing and Hunting
 </td>
 </tr>
@@ -184,7 +184,7 @@ Agriculture, Forestry, Fishing and Hunting
 <td style="text-align:left;">
 21
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Mining, Quarrying, and Oil and Gas Extraction
 </td>
 </tr>
@@ -192,7 +192,7 @@ Mining, Quarrying, and Oil and Gas Extraction
 <td style="text-align:left;">
 22
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Utilities
 </td>
 </tr>
@@ -200,7 +200,7 @@ Utilities
 <td style="text-align:left;">
 23
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Construction
 </td>
 </tr>
@@ -208,7 +208,7 @@ Construction
 <td style="text-align:left;">
 31-33
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Manufacturing
 </td>
 </tr>
@@ -216,7 +216,7 @@ Manufacturing
 <td style="text-align:left;">
 42
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Wholesale Trade
 </td>
 </tr>
@@ -224,7 +224,7 @@ Wholesale Trade
 <td style="text-align:left;">
 44-45
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Retail Trade
 </td>
 </tr>
@@ -232,7 +232,7 @@ Retail Trade
 <td style="text-align:left;">
 48-49
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Transportation and Warehousing
 </td>
 </tr>
@@ -240,7 +240,7 @@ Transportation and Warehousing
 <td style="text-align:left;">
 51
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Information
 </td>
 </tr>
@@ -248,7 +248,7 @@ Information
 <td style="text-align:left;">
 52
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Finance and Insurance
 </td>
 </tr>
@@ -256,7 +256,7 @@ Finance and Insurance
 <td style="text-align:left;">
 53
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Real Estate and Rental and Leasing
 </td>
 </tr>
@@ -264,7 +264,7 @@ Real Estate and Rental and Leasing
 <td style="text-align:left;">
 54
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Professional, Scientific, and Technical Services
 </td>
 </tr>
@@ -272,7 +272,7 @@ Professional, Scientific, and Technical Services
 <td style="text-align:left;">
 55
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Management of Companies and Enterprises
 </td>
 </tr>
@@ -280,7 +280,7 @@ Management of Companies and Enterprises
 <td style="text-align:left;">
 56
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Administrative and Support and Waste Management and Remediation Services
 </td>
 </tr>
@@ -288,7 +288,7 @@ Administrative and Support and Waste Management and Remediation Services
 <td style="text-align:left;">
 61
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Educational Services
 </td>
 </tr>
@@ -296,7 +296,7 @@ Educational Services
 <td style="text-align:left;">
 62
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Health Care and Social Assistance
 </td>
 </tr>
@@ -304,7 +304,7 @@ Health Care and Social Assistance
 <td style="text-align:left;">
 71
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Arts, Entertainment, and Recreation
 </td>
 </tr>
@@ -312,7 +312,7 @@ Arts, Entertainment, and Recreation
 <td style="text-align:left;">
 72
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Accommodation and Food Services
 </td>
 </tr>
@@ -320,7 +320,7 @@ Accommodation and Food Services
 <td style="text-align:left;">
 81
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Other Services (except Public Administration)
 </td>
 </tr>
@@ -328,7 +328,7 @@ Other Services (except Public Administration)
 <td style="text-align:left;">
 92
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Public Administration
 </td>
 </tr>
@@ -336,7 +336,7 @@ Public Administration
 <td style="text-align:left;">
 99
 </td>
-<td style="text-align:center;">
+<td style="text-align:left;">
 Unknown
 </td>
 </tr>
@@ -393,32 +393,10 @@ H1b_data$Continuing_Approvals<-H1b_data$Continuing_Approvals+1
 ```
 
 ``` r
-model<-lm(log(Initial_Approvals)~log(Continuing_Approvals),data = H1b_data)
-summary(model)
+#model<-lm(log(Initial_Approvals)~log(Continuing_Approvals),data = H1b_data)
+#summary(model)
 ```
-
-    ## 
-    ## Call:
-    ## lm(formula = log(Initial_Approvals) ~ log(Continuing_Approvals), 
-    ##     data = H1b_data)
-    ## 
-    ## Residuals:
-    ##     Min      1Q  Median      3Q     Max 
-    ## -2.3665 -0.4828 -0.2384  0.4547  6.0993 
-    ## 
-    ## Coefficients:
-    ##                           Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)               0.238401   0.001610   148.1   <2e-16 ***
-    ## log(Continuing_Approvals) 0.352593   0.001372   257.0   <2e-16 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## Residual standard error: 0.6277 on 271484 degrees of freedom
-    ## Multiple R-squared:  0.1957, Adjusted R-squared:  0.1957 
-    ## F-statistic: 6.604e+04 on 1 and 271484 DF,  p-value: < 2.2e-16
 
 ``` r
-plot(model)
+#plot(model)
 ```
-
-![](Readme_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->![](Readme_files/figure-gfm/unnamed-chunk-7-2.png)<!-- -->![](Readme_files/figure-gfm/unnamed-chunk-7-3.png)<!-- -->![](Readme_files/figure-gfm/unnamed-chunk-7-4.png)<!-- -->

@@ -9,3 +9,4 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Here you can find all the work done to make a new data file "H1b_data.RData" from the data obtained from H1B employer data hub in USCIS website and Population by zipcode data from United States Census Bureau

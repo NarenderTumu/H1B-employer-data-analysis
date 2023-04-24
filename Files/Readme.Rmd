@@ -2,7 +2,7 @@
 title: "Data Cleaning"
 author: "Narender"
 date: "4/23/2023"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}

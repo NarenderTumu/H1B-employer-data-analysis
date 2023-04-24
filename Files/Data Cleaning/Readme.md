@@ -251,10 +251,6 @@ BELLEVUE
 
 **Population data by Zip code in 2021**
 
-``` r
-kable(population_subset)%>%kable_styling("bordered",full_width = FALSE)
-```
-
 <table class="table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -282,52 +278,6 @@ NA
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-GEO\_ID
-</td>
-<td style="text-align:left;">
-NAME
-</td>
-<td style="text-align:left;">
-B01003\_001E
-</td>
-<td style="text-align:left;">
-B01003\_001EA
-</td>
-<td style="text-align:left;">
-B01003\_001M
-</td>
-<td style="text-align:left;">
-B01003\_001MA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Geography
-</td>
-<td style="text-align:left;">
-Geographic Area Name
-</td>
-<td style="text-align:left;">
-Estimate!!Total
-</td>
-<td style="text-align:left;">
-Annotation of Estimate!!Total
-</td>
-<td style="text-align:left;">
-Margin of Error!!Total
-</td>
-<td style="text-align:left;">
-Annotation of Margin of Error!!Total
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 860Z200US00601
@@ -389,6 +339,75 @@ null
 </td>
 <td style="text-align:left;">
 841
+</td>
+<td style="text-align:left;">
+null
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+860Z200US00606
+</td>
+<td style="text-align:left;">
+ZCTA5 00606
+</td>
+<td style="text-align:left;">
+5751
+</td>
+<td style="text-align:left;">
+null
+</td>
+<td style="text-align:left;">
+355
+</td>
+<td style="text-align:left;">
+null
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+860Z200US00610
+</td>
+<td style="text-align:left;">
+ZCTA5 00610
+</td>
+<td style="text-align:left;">
+26153
+</td>
+<td style="text-align:left;">
+null
+</td>
+<td style="text-align:left;">
+382
+</td>
+<td style="text-align:left;">
+null
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+860Z200US00611
+</td>
+<td style="text-align:left;">
+ZCTA5 00611
+</td>
+<td style="text-align:left;">
+1283
+</td>
+<td style="text-align:left;">
+null
+</td>
+<td style="text-align:left;">
+358
 </td>
 <td style="text-align:left;">
 null

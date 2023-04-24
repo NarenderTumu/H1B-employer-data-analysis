@@ -1,6 +1,5 @@
 Data Cleaning
 ================
-Narender
 
 Here you can find all the work done to make a new data file
 “H1b\_data.RData” obtained from cleaning [H1B employer
@@ -543,6 +542,11 @@ H1b_data<-rbind(Data_2021,Data_2020,Data_2019,Data_2018,Data_2017)
 # Converting the ZIP variable into character variable and using skim() function to explore the data and find any missing values
 
 H1b_data$ZIP<-as.character(H1b_data$ZIP)
+
+
+# Removing the variable "Tax_id" which we are  not going to use for this analysis
+
+H1b_data<-H1b_data[,-9]
 ```
 
 ``` r
@@ -568,3 +572,231 @@ State_names <- c(AL = "Alabama", AK = "Alaska", AZ = "Arizona", AR = "Arkansas",
 
 H1b_data$State <- recode(H1b_data$State, !!!State_names)
 ```
+
+## Here you can see a sample of the cleaned data that we are going to use for this analysis
+
+<table class="table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+ZIP
+</th>
+<th style="text-align:right;">
+Fiscal\_Year
+</th>
+<th style="text-align:left;">
+Employer
+</th>
+<th style="text-align:right;">
+Initial\_Approvals
+</th>
+<th style="text-align:right;">
+Initial\_Denials
+</th>
+<th style="text-align:right;">
+Continuing\_Approvals
+</th>
+<th style="text-align:right;">
+Continuing\_Denials
+</th>
+<th style="text-align:right;">
+NAICS
+</th>
+<th style="text-align:left;">
+State
+</th>
+<th style="text-align:left;">
+City
+</th>
+<th style="text-align:right;">
+Total\_population
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+72113
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:left;">
+UNIQUE SERVICES ASSOCIATES INC
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:left;">
+Arkansas
+</td>
+<td style="text-align:left;">
+MAUMELLE
+</td>
+<td style="text-align:right;">
+27190
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+72113
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:left;">
+TECSOURCE INTERNATIONAL LLC
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:left;">
+Arkansas
+</td>
+<td style="text-align:left;">
+NORTH LITTLE ROCK
+</td>
+<td style="text-align:right;">
+27190
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+72114
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:left;">
+FIRST ORION CORP
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:left;">
+Arkansas
+</td>
+<td style="text-align:left;">
+N LITTLE ROCK
+</td>
+<td style="text-align:right;">
+10550
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+72114
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:left;">
+SAFE FOODS CORPORATION
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+99
+</td>
+<td style="text-align:left;">
+Arkansas
+</td>
+<td style="text-align:left;">
+N LITTLE ROCK
+</td>
+<td style="text-align:right;">
+10550
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+72114
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:left;">
+FIRST ORION CORP
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:left;">
+Arkansas
+</td>
+<td style="text-align:left;">
+NORTH LITTLE ROCK
+</td>
+<td style="text-align:right;">
+10550
+</td>
+</tr>
+</tbody>
+</table>
+
+Now I am going to save this data file as an RData file with name
+“H1b\_data.RData”
+
+``` r
+save(H1b_data,file = "H1b_data.RData")
+```
+
+## Navigate to the “Analysis” folder to follow the next steps of this project where I will be analyzing the cleaned data to check for any patterns and start building statistical models

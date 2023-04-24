@@ -1,6 +1,5 @@
 ---
 title: "Data Cleaning"
-author: "Narender"
 output: github_document
 always_allow_html: true
 ---
@@ -62,6 +61,8 @@ kable(h1b_subset)%>%kable_styling("bordered",full_width = FALSE)
 kable(population_subset)%>%kable_styling("bordered",full_width = FALSE)
 
 ```
+
+
 
 
 ```{r}
@@ -160,6 +161,11 @@ H1b_data<-rbind(Data_2021,Data_2020,Data_2019,Data_2018,Data_2017)
 # Converting the ZIP variable into character variable and using skim() function to explore the data and find any missing values
 
 H1b_data$ZIP<-as.character(H1b_data$ZIP)
+
+
+# Removing the variable "Tax_id" which we are  not going to use for this analysis
+
+H1b_data<-H1b_data[,-9]
 ```
 
 
@@ -191,3 +197,23 @@ H1b_data$State <- recode(H1b_data$State, !!!State_names)
 
 
 
+## Here you can see a sample of the cleaned data that we are going to use for this analysis
+
+
+```{r,echo=FALSE}
+H1bdata_subset<-H1b_data[38942:38946,]
+
+kable(H1bdata_subset,row.names = FALSE)%>%kable_styling("bordered",full_width = FALSE)
+```
+
+
+
+Now I am going to save this data file as an RData file with name "H1b_data.RData"
+
+
+```{r}
+save(H1b_data,file = "H1b_data.RData")
+```
+
+
+## Navigate to the "Analysis" folder to follow the next steps of this project where I will be analyzing the cleaned data to check for any patterns and start building statistical models

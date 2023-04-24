@@ -190,3 +190,189 @@ integer
 </tr>
 </tbody>
 </table>
+
+**The following table provides detailed information on the definitions
+of NAICS codes**
+
+<table class="table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Sector
+</th>
+<th style="text-align:center;">
+Definition
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:center;">
+Agriculture, Forestry, Fishing and Hunting
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+21
+</td>
+<td style="text-align:center;">
+Mining, Quarrying, and Oil and Gas Extraction
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+22
+</td>
+<td style="text-align:center;">
+Utilities
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+23
+</td>
+<td style="text-align:center;">
+Construction
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+31-33
+</td>
+<td style="text-align:center;">
+Manufacturing
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+42
+</td>
+<td style="text-align:center;">
+Wholesale Trade
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+44-45
+</td>
+<td style="text-align:center;">
+Retail Trade
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+48-49
+</td>
+<td style="text-align:center;">
+Transportation and Warehousing
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+51
+</td>
+<td style="text-align:center;">
+Information
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+52
+</td>
+<td style="text-align:center;">
+Finance and Insurance
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+53
+</td>
+<td style="text-align:center;">
+Real Estate and Rental and Leasing
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+54
+</td>
+<td style="text-align:center;">
+Professional, Scientific, and Technical Services
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+55
+</td>
+<td style="text-align:center;">
+Management of Companies and Enterprises
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+56
+</td>
+<td style="text-align:center;">
+Administrative and Support and Waste Management and Remediation Services
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+61
+</td>
+<td style="text-align:center;">
+Educational Services
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+62
+</td>
+<td style="text-align:center;">
+Health Care and Social Assistance
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+71
+</td>
+<td style="text-align:center;">
+Arts, Entertainment, and Recreation
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+72
+</td>
+<td style="text-align:center;">
+Accommodation and Food Services
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+81
+</td>
+<td style="text-align:center;">
+Other Services (except Public Administration)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+92
+</td>
+<td style="text-align:center;">
+Public Administration
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+99
+</td>
+<td style="text-align:center;">
+Unknown
+</td>
+</tr>
+</tbody>
+</table>

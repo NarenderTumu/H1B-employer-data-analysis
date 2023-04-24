@@ -2,6 +2,7 @@
 title: "Data Cleaning"
 author: "Narender"
 output: github_document
+always_allow_html: true
 ---
 
 ```{r setup, include=FALSE}
@@ -18,6 +19,7 @@ library(tidymodels)
 library(readxl)
 library(readr)
 library(dplyr)
+library(kableExtra)
 ```
 
 
@@ -37,6 +39,27 @@ population_2020 <- read_csv("~/STA631/H1B-employer-data-analysis/Files/Populatio
 population_2019 <- read_csv("~/STA631/H1B-employer-data-analysis/Files/Population datafiles/ACSDT5Y2019.B01003-Data.csv",show_col_types = FALSE,col_names = c("Geography","Geographic area name","Estimate total","margin of error","Annotation of margin of error","Annotation of estimate","NA"))
 population_2018 <- read_csv("~/STA631/H1B-employer-data-analysis/Files/Population datafiles/ACSDT5Y2018.B01003-Data.csv",show_col_types = FALSE,col_names = c("Geography","Geographic area name","Estimate total","margin of error","Annotation of margin of error","Annotation of estimate","NA"))
 population_2017 <- read_csv("~/STA631/H1B-employer-data-analysis/Files/Population datafiles/ACSDT5Y2017.B01003-Data.csv",show_col_types = FALSE,col_names = c("Geography","Geographic area name","Estimate total","margin of error","Annotation of margin of error","Annotation of estimate","NA"))
+
+```
+
+
+## Here you can see the sample of the both data files for the year 2021
+
+**H1B Employer data 2021**
+
+
+```{r sample H1B data,echo=FALSE}
+h1b_subset<-h1b_2021[1:5,]
+population_subset<-population_2021[3:8,]
+
+kable(h1b_subset)%>%kable_styling("bordered",full_width = FALSE)
+```
+
+
+**Population data by Zip code in 2021**
+
+```{r sample population data,echo=FALSE}
+kable(population_subset)%>%kable_styling("bordered",full_width = FALSE)
 
 ```
 
@@ -165,4 +188,6 @@ State_names <- c(AL = "Alabama", AK = "Alaska", AZ = "Arizona", AR = "Arkansas",
 
 H1b_data$State <- recode(H1b_data$State, !!!State_names)
 ```
+
+
 

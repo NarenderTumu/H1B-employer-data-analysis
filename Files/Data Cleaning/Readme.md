@@ -28,6 +28,378 @@ population_2018 <- read_csv("~/STA631/H1B-employer-data-analysis/Files/Populatio
 population_2017 <- read_csv("~/STA631/H1B-employer-data-analysis/Files/Population datafiles/ACSDT5Y2017.B01003-Data.csv",show_col_types = FALSE,col_names = c("Geography","Geographic area name","Estimate total","margin of error","Annotation of margin of error","Annotation of estimate","NA"))
 ```
 
+## Here you can see the sample of the both data files for the year 2021
+
+**H1B Employer data 2021**
+
+<table class="table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Fiscal Year
+</th>
+<th style="text-align:left;">
+Employer
+</th>
+<th style="text-align:right;">
+Initial Approval
+</th>
+<th style="text-align:right;">
+Initial Denial
+</th>
+<th style="text-align:right;">
+Continuing Approval
+</th>
+<th style="text-align:right;">
+Continuing Denial
+</th>
+<th style="text-align:right;">
+NAICS
+</th>
+<th style="text-align:left;">
+Tax ID
+</th>
+<th style="text-align:left;">
+State
+</th>
+<th style="text-align:left;">
+City
+</th>
+<th style="text-align:left;">
+ZIP
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:left;">
+1841
+</td>
+<td style="text-align:left;">
+FL
+</td>
+<td style="text-align:left;">
+TAMPA
+</td>
+<td style="text-align:left;">
+33618
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:left;">
++VANTAGE CORP
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+3011
+</td>
+<td style="text-align:left;">
+MI
+</td>
+<td style="text-align:left;">
+LIVONIA
+</td>
+<td style="text-align:left;">
+48150
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:left;">
+01INTERACTIVE INC
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:left;">
+9852
+</td>
+<td style="text-align:left;">
+CA
+</td>
+<td style="text-align:left;">
+CITY INDUSTRY
+</td>
+<td style="text-align:left;">
+91745
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:left;">
+02908 HOLDCO LLC
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:left;">
+4909
+</td>
+<td style="text-align:left;">
+RI
+</td>
+<td style="text-align:left;">
+PROVIDENCE
+</td>
+<td style="text-align:left;">
+02908
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:left;">
+0965688 BC LTD DBA PROCOGIA
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:left;">
+209
+</td>
+<td style="text-align:left;">
+WA
+</td>
+<td style="text-align:left;">
+BELLEVUE
+</td>
+<td style="text-align:left;">
+98006
+</td>
+</tr>
+</tbody>
+</table>
+
+**Population data by Zip code in 2021**
+
+``` r
+kable(population_subset)%>%kable_styling("bordered",full_width = FALSE)
+```
+
+<table class="table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Geography
+</th>
+<th style="text-align:left;">
+Geographic area name
+</th>
+<th style="text-align:left;">
+Estimate total
+</th>
+<th style="text-align:left;">
+margin of error
+</th>
+<th style="text-align:left;">
+Annotation of margin of error
+</th>
+<th style="text-align:left;">
+Annotation of estimate
+</th>
+<th style="text-align:left;">
+NA
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+GEO\_ID
+</td>
+<td style="text-align:left;">
+NAME
+</td>
+<td style="text-align:left;">
+B01003\_001E
+</td>
+<td style="text-align:left;">
+B01003\_001EA
+</td>
+<td style="text-align:left;">
+B01003\_001M
+</td>
+<td style="text-align:left;">
+B01003\_001MA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Geography
+</td>
+<td style="text-align:left;">
+Geographic Area Name
+</td>
+<td style="text-align:left;">
+Estimate!!Total
+</td>
+<td style="text-align:left;">
+Annotation of Estimate!!Total
+</td>
+<td style="text-align:left;">
+Margin of Error!!Total
+</td>
+<td style="text-align:left;">
+Annotation of Margin of Error!!Total
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+860Z200US00601
+</td>
+<td style="text-align:left;">
+ZCTA5 00601
+</td>
+<td style="text-align:left;">
+17126
+</td>
+<td style="text-align:left;">
+null
+</td>
+<td style="text-align:left;">
+429
+</td>
+<td style="text-align:left;">
+null
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+860Z200US00602
+</td>
+<td style="text-align:left;">
+ZCTA5 00602
+</td>
+<td style="text-align:left;">
+37895
+</td>
+<td style="text-align:left;">
+null
+</td>
+<td style="text-align:left;">
+279
+</td>
+<td style="text-align:left;">
+null
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+860Z200US00603
+</td>
+<td style="text-align:left;">
+ZCTA5 00603
+</td>
+<td style="text-align:left;">
+49136
+</td>
+<td style="text-align:left;">
+null
+</td>
+<td style="text-align:left;">
+841
+</td>
+<td style="text-align:left;">
+null
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+
 ``` r
 # Removing first row which is the headers of the data and also only keeping the zip code,total_population columns which we are going to use for this analysis
 

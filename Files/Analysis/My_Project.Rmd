@@ -1,0 +1,71 @@
+---
+title: "H1b Employer Data Analysis"
+author: "Narender Tumu"
+output: github_document
+always_allow_html: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+```{r Loading packages,message=FALSE,warning=FALSE,include=FALSE}
+# Loading the necessary packages
+
+library(tidyr)
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+library(tidymodels)
+library(readxl)
+library(readr)
+library(dplyr)
+library(ggplot2)
+```
+
+
+
+## Loading the "H1b_data.RData" file which was obtained after cleaning the raw data files. For the process of cleaning the data navigate to [Data Cleaning](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Data%20Cleaning)
+
+
+
+```{r Loading data,warning=FALSE,include=FALSE}
+load("~/STA631/H1B-employer-data-analysis/Files/Data Cleaning/H1b_data.RData")
+```
+
+
+**The sample data can be seen below**
+
+```{r displaying sample data,echo=FALSE}
+head(H1b_data,5)
+```
+
+
+**Data Dictionary for the H1B employer data**
+
+```{r creating a Data Dictionary,echo=FALSE}
+# Define the data dictionary as a data frame
+dict <- data.frame(
+  Variable = names(H1b_data),
+  Description = c("Petitioner’s five-digit ZIP code ",
+                  "This variable indicates the fiscal year in which the H-1B petition was filed. Fiscal year in the United States starts from October 1st and ends on September 30th of the following year.", 
+                  "Petitioner’s firm/employer name", 
+                  "Number of approvals when the employer filing petition for the first time to the worker",
+                  "Number of denails when the employer filing petition for the first time to the worker",
+                  "Number of approvals when the employer is filing the petition for the worker who was already having an approved visa for the same employer and wishing to extend the workers time period",
+                  "Number of denials when the employer is filing the petition for the worker who was already having an approved visa for the same employer and wishing to extend the workers time period",
+                  "North American Industry Classification System Code: A character string that stands for an industry classification within the North American Industry Classification System,For more information on the NAICS, visit the [U.S. Census Bureau’s North American Industry Classification Code webpage](https://www.census.gov/naics/)",
+                  "Petitioner’s state",
+                  "Petitioner’s City",
+                  "Population of the place by Zipcode"), 
+Datatype = sapply(H1b_data, class),stringsAsFactors = FALSE)
+
+
+kable(dict,align = "lccc", row.names = FALSE ) %>%
+  kable_styling("bordered", full_width = FALSE)
+
+```
+

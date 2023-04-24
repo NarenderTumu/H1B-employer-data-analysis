@@ -11,7 +11,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-
 ```{r Loading packages,message=FALSE,warning=FALSE,include=FALSE}
 # Loading the necessary packages
 
@@ -24,6 +23,9 @@ library(readxl)
 library(readr)
 library(dplyr)
 library(ggplot2)
+library(pscl)
+library(glmnet)
+
 ```
 
 
@@ -36,12 +38,6 @@ library(ggplot2)
 load("~/STA631/H1B-employer-data-analysis/Files/Data Cleaning/H1b_data.RData")
 ```
 
-
-**The sample data can be seen below**
-
-```{r displaying sample data,echo=FALSE}
-head(H1b_data,5)
-```
 
 
 **Data Dictionary for the H1B employer data**
@@ -68,4 +64,102 @@ kable(dict,align = "lccc", row.names = FALSE ) %>%
   kable_styling("bordered", full_width = FALSE)
 
 ```
+
+
+
+
+**The following table provides detailed information on the definitions of NAICS codes**
+
+
+
+```{r,echo=FALSE}
+NAICS_dictionary<-data.frame(Sector=c("11","21","22","23","31-33","42","44-45","48-49","51","52","53","54","55","56","61","62","71","72","81","92","99"),Definition=c("Agriculture, Forestry, Fishing and Hunting","Mining, Quarrying, and Oil and Gas Extraction","Utilities","Construction","Manufacturing","Wholesale Trade","Retail Trade","Transportation and Warehousing","Information","Finance and Insurance","Real Estate and Rental and Leasing","Professional, Scientific, and Technical Services","Management of Companies and Enterprises","Administrative and Support and Waste Management and Remediation Services","Educational Services","Health Care and Social Assistance","Arts, Entertainment, and Recreation","Accommodation and Food Services","Other Services (except Public Administration)","Public Administration","Unknown"))
+
+kable(NAICS_dictionary,align = "lccc", row.names = FALSE ) %>%
+  kable_styling("bordered", full_width = FALSE)
+```
+
+
+
+
+we have variables that are numeric, character and integer. Let's convert some of the variable to use them for analysis
+
+
+```{r}
+# converting the Fiscal_Year, NAICS variables from numeric to factor
+
+H1b_data$Fiscal_Year<-as.factor(H1b_data$Fiscal_Year)
+
+H1b_data$NAICS<-as.factor(H1b_data$NAICS)
+
+
+# converting the State, City variables from Charatcer to factor
+
+H1b_data$State<-as.factor(H1b_data$State)
+
+H1b_data$City<-as.factor(H1b_data$City)
+```
+
+
+
+Checking the Summmary statistics of all the numeric variables in the dataset using select() and summary() functions
+
+
+
+```{r,echo=FALSE}
+H1b_data %>% select(Initial_Approvals,Initial_Denials,Continuing_Approvals,Continuing_Denials,Total_population)%>%
+  summary()
+```
+
+
+### Using the table() function for all the factor variables to get the frequency distribution of each level
+
+
+### We can see that from the below plot, most of the employers belongs to Professional, Scientific, and Technical Services category
+
+
+```{r,echo=FALSE}
+NAICS_frequency<-data.frame(table(H1b_data$NAICS))
+
+
+ggplot(NAICS_frequency,aes(x=reorder(Var1,Freq),y=Freq))+
+  geom_col(color="black",fill="blue")+
+  labs(title="Number of employers based on their NAICS classification",
+       x="NAICS code",
+       y="Number of employers")+
+  theme_light()+
+  theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+
+
+
+
+
+
+
+
+```{r}
+H1b_data$Initial_Approvals<-H1b_data$Initial_Approvals+1
+H1b_data$Continuing_Approvals<-H1b_data$Continuing_Approvals+1
+```
+
+
+
+```{r}
+
+model<-lm(log(Initial_Approvals)~log(Continuing_Approvals),data = H1b_data)
+summary(model)
+
+```
+
+```{r}
+plot(model)
+```
+
+
+
+
+
 

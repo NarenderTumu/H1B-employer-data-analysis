@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r Loading packages,message=FALSE,warning=FALSE,include=FALSE}
 # Loading the necessary packages
-
+library(dplyr)
 library(tidyr)
 library(knitr)
 library(kableExtra)
@@ -21,12 +21,14 @@ library(tidyverse)
 library(tidymodels)
 library(readxl)
 library(readr)
-library(dplyr)
 library(ggplot2)
 library(pscl)
 library(glmnet)
 library(treemap)
 library(GGally)
+library(ggfortify)
+library(caret)
+library(MASS)
 
 ```
 
@@ -73,7 +75,7 @@ kable_styling("bordered",full_width = FALSE,position = "center")
 
 
 
-```{r,echo=FALSE}
+```{r NAICS data dictionary,echo=FALSE}
 NAICS_dictionary<-data.frame(Sector=c("11","21","22","23","31-33","42","44-45","48-49","51","52","53","54","55","56","61","62","71","72","81","92","99"),Definition=c("Agriculture, Forestry, Fishing and Hunting","Mining, Quarrying, and Oil and Gas Extraction","Utilities","Construction","Manufacturing","Wholesale Trade","Retail Trade","Transportation and Warehousing","Information","Finance and Insurance","Real Estate and Rental and Leasing","Professional, Scientific, and Technical Services","Management of Companies and Enterprises","Administrative and Support and Waste Management and Remediation Services","Educational Services","Health Care and Social Assistance","Arts, Entertainment, and Recreation","Accommodation and Food Services","Other Services (except Public Administration)","Public Administration","Unknown"))
 
 kable(NAICS_dictionary, row.names = FALSE ) %>%
@@ -87,7 +89,7 @@ kable(NAICS_dictionary, row.names = FALSE ) %>%
 we have variables that are numeric, character and integer. Let's convert some of the variables to use them for analysis
 
 
-```{r}
+```{r Changing Data types}
 # converting the Fiscal_Year, NAICS variables from numeric to factor
 
 H1b_data$Fiscal_Year<-as.factor(H1b_data$Fiscal_Year)
@@ -95,7 +97,7 @@ H1b_data$Fiscal_Year<-as.factor(H1b_data$Fiscal_Year)
 H1b_data$NAICS<-as.factor(H1b_data$NAICS)
 
 
-# converting the State, City variables from Charatcer to factor
+# converting the State, City variables from Character to factor
 
 H1b_data$State<-as.factor(H1b_data$State)
 
@@ -104,13 +106,15 @@ H1b_data$City<-as.factor(H1b_data$City)
 
 
 
-Checking the Summmary statistics of all the numeric variables in the dataset using select() and summary() functions
+Checking the Summary statistics of all the numeric variables in the data set using select() and summary() functions
 
 
 
-```{r,echo=FALSE}
-H1b_data %>% select(Initial_Approvals,Initial_Denials,Continuing_Approvals,Continuing_Denials,Total_population)%>%
-  summary()
+```{r summary of numeric variables,echo=FALSE}
+
+Numeric<-H1b_data[,c(4,5,6,7,11)]
+summary(Numeric)
+
 ```
 
 
@@ -120,7 +124,7 @@ H1b_data %>% select(Initial_Approvals,Initial_Denials,Continuing_Approvals,Conti
 * We can see that from the below plot, most of the employers belongs to Professional, Scientific, and Technical Services category
 
 
-```{r,echo=FALSE}
+```{r NAICS column chart,echo=FALSE}
 NAICS_frequency<-data.frame(table(H1b_data$NAICS))
 
 
@@ -140,7 +144,7 @@ ggplot(NAICS_frequency,aes(x=reorder(Var1,Freq),y=Freq))+
 * We can see from the below chart, that California has the highest number of employees filing for H1B visa followed by New York, Texas, New Jersey
 
 
-```{r,echo=FALSE}
+```{r States Column Chart,echo=FALSE}
 State_frequency<-data.frame(table(H1b_data$State))
 
 
@@ -157,7 +161,7 @@ ggplot(State_frequency,aes(x=reorder(Var1,Freq),y=Freq,fill=Freq))+
 
 * We can see from the below tree map of top 30 cities in US based on the number of employers filing H1B petitions from 2017-2021, where New York, San Francisco, Houston, Chicago, Boston stands in the top
 
-```{r,echo=FALSE,warning=FALSE}
+```{r City Tree map,echo=FALSE,warning=FALSE}
 
 City_frequency<-data.frame(table(H1b_data$City))
 City_frequency<-City_frequency%>% arrange(desc(Freq))
@@ -182,7 +186,7 @@ treemap(Top30_cities,
 
 
  
-```{r,echo=FALSE}
+```{r histograms of numeric variables,echo=FALSE}
 hist(H1b_data$Initial_Approvals)
 hist(H1b_data$Initial_Denials)
 hist(H1b_data$Continuing_Approvals)
@@ -194,15 +198,14 @@ hist(H1b_data$Total_population)
 * Below we can see the output of ggpairs() which gives histograms and scatter plots of all the numeric variables with their respective correlation-coefficients from which we can see there is some correlation between Initial_Approvals and Continuing Approvals. 
 
 
-```{r,warning=FALSE,echo=FALSE}
-H1b_data%>%select(Initial_Approvals,Initial_Denials,Continuing_Approvals,Continuing_Denials,Total_population)%>%
-  ggpairs(na.rm=TRUE)
+```{r GGpairs of all numeric variables,warning=FALSE,echo=FALSE}
+ggpairs(Numeric)
 ```
 
 
 * This Scatter plot below explains the relationship between Initial and Continuing Approvals
 
-```{r,echo=FALSE}
+```{r scatter plot b/w initial and continuing approvals,echo=FALSE}
 ggplot(H1b_data,aes(x=Continuing_Approvals,y=Initial_Approvals))+
   geom_point(color="red")+
   labs(title = "Scatterplot between Initial and Continuing Approvals",
@@ -212,26 +215,67 @@ ggplot(H1b_data,aes(x=Continuing_Approvals,y=Initial_Approvals))+
   theme(plot.title = element_text(hjust = 0.5),plot.caption.position = "panel")
 ```
 
-```{r}
-#H1b_data$Initial_Approvals<-H1b_data$Initial_Approvals+1
-#H1b_data$Continuing_Approvals<-H1b_data$Continuing_Approvals+1
+
+### To initiate the analysis, I plan to test the models on a smaller dataset due to the large size of our main dataset. I will filter the data based on fiscal year "2021" to focus on the H1B employer data for that year. Then, I will divide the 2021 data into two subsets: a training set(70% of the data) and a testing set(30% of the data), for further analysis.
+
+
+```{r filtering and splitting data,echo=TRUE}
+H1b_data2021<-H1b_data%>%filter(Fiscal_Year==2021)
+
+set.seed(1234)
+
+trainIndex <- createDataPartition(H1b_data2021$Initial_Approvals, p = 0.7, list = FALSE, times = 1)
+train <- H1b_data2021[trainIndex,]
+test <- H1b_data2021[-trainIndex,]
+```
+
+
+* I have created two new variables by adding a constant and taking log of that since the response and predictor variable are heavily right skewed and have a lot of zeros in the data.
+
+```{r transforming variables}
+train$logIN_Approvals<-log(train$Initial_Approvals+2)
+train$logCON_Approvals<-log(train$Continuing_Approvals+2)
+```
+
+
+### Model 1- Simple linear Regression
+
+* The following linear model is created to forecast initial approvals based on continuing approvals. Both variables are transformed because they are skewed and non-normal. The deviance residuals in the summary look decent, except for the unusually high minimum and maximum deviance in residuals. The coefficients and p-values for the intercept and predictor variable are acceptable and significant in predicting the response variable. The R-squared and adjusted R-squared values are low, indicating that the model only accounts for 32% of the variance. The model failed to meet the assumptions reasonably well, it does not perform well in predicting the response variable.
+
+```{r simple linear model, echo=FALSE}
+Model1<-lm(logIN_Approvals~logCON_Approvals,data = train)
+summary(Model1)
+autoplot(Model1, label.size = 2) + theme_bw()
+```
+
+### Model 2- Multiple linear Regression
+
+
+* I have used NAICS and transformed Continuing_Approvals to predict transformed Initial_Approvals in this multiple regression model which we can see below. This model is almost similar to the simple regression model in terms of performance, so we can say the earlier simple linear regression is better performed than this model to predict the response variable. Let's try some other model
+
+
+```{r multiple linear regression model,echo=FALSE}
+Model2<-lm(logIN_Approvals~logCON_Approvals+NAICS,data = train)
+summary(Model2)
+autoplot(Model2)
+```
+
+
+### Model3- Poisson regression
+
+
+* I have built a poisson regression model using Continuing approvals to predict the initial approvals since both of them are count variables and non-normal. The summary of the model seems not so promising in predicting the Initial_Approvals. Let's move to the next model
+
+
+```{r poisson regression model,echo=FALSE}
+Model3<-glm(Initial_Approvals ~ Continuing_Approvals, data = train, family = poisson)
+summary(Model3)
 ```
 
 
 
-```{r}
-
-#model<-lm(log(Initial_Approvals)~log(Continuing_Approvals),data = H1b_data)
-#summary(model)
-
-```
-
-```{r}
-#plot(model)
-```
 
 
-
-## Up to this point, I have attempted to construct various statistical models, such as simple and multiple linear regression models, logistic regression, poisson regression, zero-inflated poisson regression, negative binomial regression, and zero-inflated negative binomial regression models. These models were intended to predict the response variable "Initial_Approvals" using a range of predictors. Unfortunately, my attempts to predict the response variable have not been particularly successful. It's possible that I need to change my approach or look for errors in my model building. There is still a great deal of future work that needs to be done on this project. If you have any suggestions or would like to discuss the project further, [please to reach out to me](https://github.com/NarenderTumu/H1B-employer-data-analysis/issues/1).
+## Up to this point, I have attempted to construct various statistical models, such as simple and multiple linear regression models, poisson regression models. These models were intended to predict the response variable "Initial_Approvals" using  Continuing_Approvals and NAICS. Simple linear Regression performs better of these three models. Unfortunately, my attempts to predict the response variable have not been particularly successful. It's possible that I need to change my approach or look for errors in my model building. There is still a great deal of future work that needs to be done on this project. If you have any suggestions or would like to discuss the project further, [please to reach out to me](https://github.com/NarenderTumu/H1B-employer-data-analysis/issues/1).
 
 

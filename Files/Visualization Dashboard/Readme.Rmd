@@ -1,0 +1,25 @@
+---
+title: "Visualization Dashboard"
+author: "Narender"
+date: "4/26/2023"
+output: github_document
+always_allow_html: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r,include=FALSE}
+```
+
+
+```{r}
+load("~/STA631/H1B-employer-data-analysis/Files/Data Cleaning/H1b_data.RData")
+```
+
+
+```{r}
+```
+

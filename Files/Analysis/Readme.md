@@ -403,9 +403,31 @@ dataset using select() and summary() functions
 
 ![](Readme_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
+#### Checking the distribution of variables and correlations between the numerical variables
+
+-   Here are the histograms for all the numeric variables. We can
+    observe that the variables Initial\_Approvals, Initial\_Denials,
+    Continuing\_Approvals, and Continuing\_Denials are heavily right
+    skewed, while the Total\_population variable is only slightly right
+    skewed.
+
+![](Readme_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->![](Readme_files/figure-gfm/unnamed-chunk-7-2.png)<!-- -->![](Readme_files/figure-gfm/unnamed-chunk-7-3.png)<!-- -->![](Readme_files/figure-gfm/unnamed-chunk-7-4.png)<!-- -->![](Readme_files/figure-gfm/unnamed-chunk-7-5.png)<!-- -->
+
+-   Below we can see the output of ggpairs() which gives histograms and
+    scatter plots of all the numeric variables with their respective
+    correlation-coefficients from which we can see there is some
+    correlation between Initial\_Approvals and Continuing Approvals.
+
+![](Readme_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+-   This Scatter plot below explains the relationship between Initial
+    and Continuing Approvals
+
+![](Readme_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
 ``` r
-H1b_data$Initial_Approvals<-H1b_data$Initial_Approvals+1
-H1b_data$Continuing_Approvals<-H1b_data$Continuing_Approvals+1
+#H1b_data$Initial_Approvals<-H1b_data$Initial_Approvals+1
+#H1b_data$Continuing_Approvals<-H1b_data$Continuing_Approvals+1
 ```
 
 ``` r
@@ -417,4 +439,4 @@ H1b_data$Continuing_Approvals<-H1b_data$Continuing_Approvals+1
 #plot(model)
 ```
 
-## Up to this point, I have attempted to construct various statistical models, such as simple and multiple linear regression models, logistic regression, poisson regression, zero-inflated poisson regression, negative binomial regression, and zero-inflated negative binomial regression models. These models were intended to predict the response variable “Initial\_Approvals” using a range of predictors. Unfortunately, my attempts to predict the response variable have not been particularly successful. It’s possible that I need to change my approach or look for errors in my model building. There is still a great deal of future work that needs to be done on this project. If you have any suggestions or would like to discuss the project further, [please to reach out to me](tumun@mail.gvsu.edu).
+## Up to this point, I have attempted to construct various statistical models, such as simple and multiple linear regression models, logistic regression, poisson regression, zero-inflated poisson regression, negative binomial regression, and zero-inflated negative binomial regression models. These models were intended to predict the response variable “Initial\_Approvals” using a range of predictors. Unfortunately, my attempts to predict the response variable have not been particularly successful. It’s possible that I need to change my approach or look for errors in my model building. There is still a great deal of future work that needs to be done on this project. If you have any suggestions or would like to discuss the project further, [please to reach out to me](https://github.com/NarenderTumu/H1B-employer-data-analysis/issues/1).

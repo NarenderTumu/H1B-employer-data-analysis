@@ -4,6 +4,8 @@ Narender Tumu
 
 ## Loading the “H1b\_data.RData” file which was obtained after cleaning the raw data files. For the process of cleaning the data navigate to [Data Cleaning](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Data%20Cleaning)
 
+#### Below are the Data dictionaries to understand the data better
+
 **Data Dictionary for the H1B employer data**
 
 <table class="table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -344,7 +346,7 @@ Unknown
 </table>
 
 we have variables that are numeric, character and integer. Let’s convert
-some of the variable to use them for analysis
+some of the variables to use them for analysis
 
 ``` r
 # converting the Fiscal_Year, NAICS variables from numeric to factor
@@ -381,11 +383,25 @@ dataset using select() and summary() functions
     ##  Max.   :130352  
     ##  NA's   :28
 
-### Using the table() function for all the factor variables to get the frequency distribution of each level
+-   Using the table() function for all the factor variables to get the
+    frequency distribution of each level
 
-### We can see that from the below plot, most of the employers belongs to Professional, Scientific, and Technical Services category
+-   We can see that from the below plot, most of the employers belongs
+    to Professional, Scientific, and Technical Services category
 
 ![](Readme_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+-   We can see from the below chart, that California has the highest
+    number of employees filing for H1B visa followed by New York, Texas,
+    New Jersey
+
+![](Readme_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+-   We can see from the below tree map of top 30 cities in US based on
+    the number of employers filing H1B petitions from 2017-2021, where
+    New York, San Francisco, Houston, Chicago, Boston stands in the top
+
+![](Readme_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ``` r
 H1b_data$Initial_Approvals<-H1b_data$Initial_Approvals+1
@@ -400,3 +416,5 @@ H1b_data$Continuing_Approvals<-H1b_data$Continuing_Approvals+1
 ``` r
 #plot(model)
 ```
+
+## Up to this point, I have attempted to construct various statistical models, such as simple and multiple linear regression models, logistic regression, poisson regression, zero-inflated poisson regression, negative binomial regression, and zero-inflated negative binomial regression models. These models were intended to predict the response variable “Initial\_Approvals” using a range of predictors. Unfortunately, my attempts to predict the response variable have not been particularly successful. It’s possible that I need to change my approach or look for errors in my model building. There is still a great deal of future work that needs to be done on this project. If you have any suggestions or would like to discuss the project further, [please to reach out to me](tumun@mail.gvsu.edu).

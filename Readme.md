@@ -34,7 +34,7 @@ Labor](https://www.dol.gov/agencies/whd/immigration/h1b) websites**
 -   The cleaned data that I used for this analysis is under [Data
     Cleaning](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Data%20Cleaning)
     folder named as “H1b\_data.Rdata”. The steps I followed to clean the
-    raw data can also be found here
+    raw data can also be found in the same folder.
 
 -   For the analysis part of the project, navigate to the
     [Analysis](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Analysis)

@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * Raw Data files can be acessed in the [H1B employer data](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/H1b%20employer%20datafiles) and [population data by zipcode](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Population%20datafiles)
     
-* The cleaned data that I used for this analysis is under [Data Cleaning](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Data%20Cleaning) folder named as "H1b_data.Rdata". The steps I followed to clean the raw data can also be found here
+* The cleaned data that I used for this analysis is under [Data Cleaning](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Data%20Cleaning) folder named as "H1b_data.Rdata". The steps I followed to clean the raw data can also be found in the same folder.
     
 * For the analysis part of the project, navigate to the [Analysis](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Analysis) folder
 

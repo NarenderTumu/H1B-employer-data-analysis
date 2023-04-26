@@ -1,7 +1,6 @@
 ---
-title: "H1B-employer-data-analysis"
-author: "Narender"
-date: "4/24/2023"
+title: "H1B Employer Data Analysis"
+author: "Narender Tumu"
 output: github_document
 always_allow_html: true
 ---
@@ -16,8 +15,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **The H1B visa is a specialized work visa under the Immigration and Nationality Act that enables American companies to hire foreign professionals in specialty occupations. To sponsor foreign workers for this visa, employers must file petitions with the United States Citizenship and Immigration Services (USCIS). If you want to learn more about this you can visit [USCIS](https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations) or [U.S.Department of Labor](https://www.dol.gov/agencies/whd/immigration/h1b) websites**
 
-* Raw Data can be acessed in the folder named [Files](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files) under [H1B employer datafiles](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/H1b%20employer%20datafiles) for data related to H1B employer from 2017 to 2021 and population data from 2017 to 2021 based on zipcode can be accessed under [population datafiles](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Population%20datafiles) folder . Processed and cleaned data can be accessed in the [Data Cleaning](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Data%20Cleaning) folder named as "H1b_data.Rdata", the process and steps I followed to clean the data is available in the same folder
 
+
+
+
+
+#### Here are some places to navigate in the repository based on interests
+
+* Raw Data files can be acessed in the [H1B employer data](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/H1b%20employer%20datafiles) and [population data by zipcode](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Population%20datafiles)
+    
+* The cleaned data that I used for this analysis is under [Data Cleaning](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Data%20Cleaning) folder named as "H1b_data.Rdata". The steps I followed to clean the raw data can also be found here
+    
+* For the analysis part of the project, navigate to the [Analysis](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Analysis) folder
+
+
+* Below are the data dictionaries for the data used for this analysis and description of NAICS classification codes for employers
 
 
 
@@ -32,7 +44,7 @@ load("~/STA631/H1B-employer-data-analysis/Files/Data Cleaning/H1b_data.RData")
 
 **Data Dictionary for the H1B employer data**
 
-```{r creating a Data Dictionary,echo=FALSE}
+```{r creating a Data Dictionary,echo=FALSE,warning=FALSE}
 # Define the data dictionary as a data frame
 dict <- data.frame(
   Variable = names(H1b_data),
@@ -50,8 +62,9 @@ dict <- data.frame(
 Datatype = sapply(H1b_data, class),stringsAsFactors = FALSE)
 
 
-kable(dict,align = "lccc", row.names = FALSE ) %>%
+kable(dict,align = "lccc", row.names = FALSE,escape = FALSE ) %>%
   kable_styling("bordered", full_width = FALSE)
+
 
 ```
 
@@ -63,7 +76,7 @@ kable(dict,align = "lccc", row.names = FALSE ) %>%
 
 
 ```{r,echo=FALSE}
-NAICS_dictionary<-data.frame(Sector=c("11","21","22","23","31-33","42","44-45","48-49","51","52","53","54","55","56","61","62","71","72","81","92","99"),Definition=c("Agriculture, Forestry, Fishing and Hunting","Mining, Quarrying, and Oil and Gas Extraction","Utilities","Construction","Manufacturing","Wholesale Trade","Retail Trade","Transportation and Warehousing","Information","Finance and Insurance","Real Estate and Rental and Leasing","Professional, Scientific, and Technical Services","Management of Companies and Enterprises","Administrative and Support and Waste Management and Remediation Services","Educational Services","Health Care and Social Assistance","Arts, Entertainment, and Recreation","Accommodation and Food Services","Other Services (except Public Administration)","Public Administration","Unknown"))
+NAICS_dictionary<-data.frame(Sector=c("11","21","22","23","31-33","42","44-45","48-49","51","52","53","54","55","56","61","62","71","72","81","92","99"),Description=c("Agriculture, Forestry, Fishing and Hunting","Mining, Quarrying, and Oil and Gas Extraction","Utilities","Construction","Manufacturing","Wholesale Trade","Retail Trade","Transportation and Warehousing","Information","Finance and Insurance","Real Estate and Rental and Leasing","Professional, Scientific, and Technical Services","Management of Companies and Enterprises","Administrative and Support and Waste Management and Remediation Services","Educational Services","Health Care and Social Assistance","Arts, Entertainment, and Recreation","Accommodation and Food Services","Other Services (except Public Administration)","Public Administration","Unknown"))
 
 kable(NAICS_dictionary,align = "lccc", row.names = FALSE ) %>%
   kable_styling("bordered",full_width = FALSE,position = "center")

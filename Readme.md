@@ -1,7 +1,6 @@
-H1B-employer-data-analysis
+H1B Employer Data Analysis
 ================
-Narender
-4/24/2023
+Narender Tumu
 
 -   Hello, my name is **Narender** and I am trying to analyze H-1B
     employer data which is from the [Immigration and citizenship data
@@ -25,18 +24,24 @@ about this you can visit
 or [U.S.Department of
 Labor](https://www.dol.gov/agencies/whd/immigration/h1b) websites**
 
--   Raw Data can be acessed in the folder named
-    [Files](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files)
-    under [H1B employer
-    datafiles](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/H1b%20employer%20datafiles)
-    for data related to H1B employer from 2017 to 2021 and population
-    data from 2017 to 2021 based on zipcode can be accessed under
-    [population
-    datafiles](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Population%20datafiles)
-    folder . Processed and cleaned data can be accessed in the [Data
+#### Here are some places to navigate in the repository based on interests
+
+-   Raw Data files can be acessed in the [H1B employer
+    data](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/H1b%20employer%20datafiles)
+    and [population data by
+    zipcode](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Population%20datafiles)
+
+-   The cleaned data that I used for this analysis is under [Data
     Cleaning](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Data%20Cleaning)
-    folder named as “H1b\_data.Rdata”, the process and steps I followed
-    to clean the data is available in the same folder
+    folder named as “H1b\_data.Rdata”. The steps I followed to clean the
+    raw data can also be found here
+
+-   For the analysis part of the project, navigate to the
+    [Analysis](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Analysis)
+    folder
+
+-   Below are the data dictionaries for the data used for this analysis
+    and description of NAICS classification codes for employers
 
 **Data Dictionary for the H1B employer data**
 
@@ -201,7 +206,7 @@ of NAICS codes**
 Sector
 </th>
 <th style="text-align:center;">
-Definition
+Description
 </th>
 </tr>
 </thead>

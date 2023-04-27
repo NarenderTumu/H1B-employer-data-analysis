@@ -1,7 +1,6 @@
 ---
-title: "Visualization Dashboard"
+title: "Data Preperation for visualization"
 author: "Narender"
-date: "4/26/2023"
 output: github_document
 always_allow_html: true
 ---
@@ -11,15 +10,104 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-```{r,include=FALSE}
-```
+### I am trying to generate an interactive US map visualization using R. The visualization will allow users to hover over and select a specific state or city of interest to obtain the numerical count of approvals and denials for employers operating in that area.
 
 
-```{r}
+* To start with, I have loaded the [data](https://github.com/NarenderTumu/H1B-employer-data-analysis/blob/main/Files/Data%20Cleaning/H1b_data.RData) I am using for this project and also a new data set that was obtained from [simplemaps](https://simplemaps.com/data/us-cities) website which I am going to use to get the latitudes and longitudes data that will be helpful to build a map visualization.
+
+
+
+* I have also grouped and summarized the H1b_data, that is I have grouped the data by Employer and State variables and then summarized their approvals and denials variables by using sum()function. A sample of that data can be seen below
+
+
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
+# Loading necessary packages
+
+library(dplyr)
+library(kableExtra)
+library(readr)
+# Loaded the H1b data
+
 load("~/STA631/H1B-employer-data-analysis/Files/Data Cleaning/H1b_data.RData")
+
+
+# Grouped the data by employer, state, city and summarized the approvals and denials numerics
+
+Grouped_data<-H1b_data%>%group_by(Employer,State,City)%>%summarise(total_initial_approvals=sum(Initial_Approvals),total_initial_denials=sum(Initial_Denials),total_Continuing_approvals=sum(Continuing_Approvals),total_continuing_denials=sum(Continuing_Denials),.groups = "drop")
+
+# subset some observations to display a sample table using kable function
+
+Grouped_subset<-Grouped_data[1:5,]
+
+kable(Grouped_subset)%>%kable_styling("bordered",full_width = FALSE)
 ```
 
 
-```{r}
+
+* Below is the sample of data that I obtained from [simplemaps](https://simplemaps.com/data/us-cities) and also cleaned it based on the requirements for the visualization
+
+
+
+```{r,echo=FALSE}
+
+# Downloaded the data from the given website and loaded it in R using read_csv
+
+uscities<-read_csv("~/STA631/H1B-employer-data-analysis/Files/Visualization Dashboard/uscities.csv",show_col_types = FALSE)
+
+
+# Subset only the required columns for this visualization which is City, State, latitude and longitude
+
+uscities<-uscities[,c(1,4,7,8)]
+
+
+# rename the city and state variable to match the names in the H1b grouped data
+
+uscities<-uscities%>%rename(City=city,State=state_name)
+
+# Changing the City variable observations to upper case to match the city variable in H1b grouped data
+
+uscities$City<-toupper(uscities$City)
+
+
+# subset some observations to display a sample table using kable function
+
+uscities_subset<-uscities[1:5,]
+
+kable(uscities_subset)%>%kable_styling("bordered",full_width = FALSE)
 ```
+
+
+
+
+* Here is the merged and final data that I am going to use to create a US map visualization. To access this data navigate to this [location](https://github.com/NarenderTumu/H1B-employer-data-analysis/tree/main/Files/Visualization%20Dashboard)
+
+```{r,echo=FALSE}
+
+# Merged both data sets using merge function
+
+Grouped_data2<-merge(Grouped_data,uscities,by=c("State","City"),all.x = TRUE)
+
+# Removing missing values from the data
+
+complete_observations<-complete.cases(Grouped_data2)
+
+Data<-Grouped_data2[complete_observations,]
+
+# subset some observations to display a sample table using kable function
+
+Data_subset<-Data[1:5,]
+
+kable(Data_subset)%>%kable_styling("bordered",full_width = FALSE)
+
+save(Data,file = "~/STA631/H1B-employer-data-analysis/Files/Visualization Dashboard/Data.RData")
+
+```
+
+
+
+
+
+
+
+
 
